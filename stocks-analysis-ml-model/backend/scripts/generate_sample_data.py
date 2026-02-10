@@ -4,6 +4,7 @@ Sample Data Generator
 Generates synthetic financial news data for testing and demonstration.
 Run: python scripts/generate_sample_data.py
 """
+
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
@@ -13,9 +14,15 @@ import sys
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.config import (
-    DATA_DIR, TICKERS, TICKER_NAMES,
-    DATE_COLUMN, TICKER_COLUMN, HEADLINE_COLUMN,
-    TEXT_COLUMN, LABEL_COLUMN, RETURN_COLUMN,
+    DATA_DIR,
+    TICKERS,
+    TICKER_NAMES,
+    DATE_COLUMN,
+    TICKER_COLUMN,
+    HEADLINE_COLUMN,
+    TEXT_COLUMN,
+    LABEL_COLUMN,
+    RETURN_COLUMN,
 )
 
 SAMPLE_DATA_CONFIG = {
@@ -41,6 +48,7 @@ NEGATIVE_HEADLINES = [
 
 
 def generate_article_text(headline: str, label: int) -> str:
+    """Generate article body conditioned on sentiment label."""
     intro = f"{headline}. "
     if label == 1:
         body = (
@@ -56,6 +64,7 @@ def generate_article_text(headline: str, label: int) -> str:
 
 
 def generate_sample_data() -> pd.DataFrame:
+    """Create a synthetic dataset of news articles and returns."""
     print("=" * 80)
     print("GENERATING SAMPLE DATA")
     print("=" * 80)
